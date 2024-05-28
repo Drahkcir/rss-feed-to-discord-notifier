@@ -2,7 +2,10 @@
 import re
 from discord_webhook import DiscordWebhook,DiscordEmbed
 
-WEBHOOK_URL="https://discord.com/api/webhooks/1231570996905906287/pNOMLekr2tF81E5iwFOPvqeGBI_dLwVm9TUcr_zu8Hxlf-dnrMe_cDtczbdJqrI1A1Hc"
+
+WEBHOOK_URL=''
+with open('.webhook_url') as f:
+    WEBHOOK_URL=f.readlines()[0]
 
 
 class Webhook:
@@ -40,5 +43,5 @@ class Webhook:
 
 obj1=Webhook()
 obj1.edit_message('about time you did it !')
-obj1.edit_embeded()
+#obj1.edit_embeded()
 obj1.sendMessages()

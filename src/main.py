@@ -1,8 +1,9 @@
 #!/bin/python3
 import re
+import feedparser
 from discord_webhook import DiscordWebhook,DiscordEmbed
 
-
+# getting the
 WEBHOOK_URL=''
 with open('.webhook_url') as f:
     WEBHOOK_URL=f.readlines()[0]
@@ -11,9 +12,9 @@ with open('.webhook_url') as f:
 class Webhook:
 
     # constructor
-    def __init__(self,title='CERT-FR',description='notifier'):
+    def __init__(self,url,title='CERT-FR',description='notifier'):
         self.webhook = DiscordWebhook(
-            url=WEBHOOK_URL, 
+            url=url,
             rate_limit_retry=True,
             description=description,
             title=title
@@ -25,6 +26,7 @@ class Webhook:
         pass
 
     def edit_message(self, content):
+
         self.webhook.content=content
 
 
@@ -41,7 +43,9 @@ class Webhook:
         
 
 
-obj1=Webhook()
-obj1.edit_message('about time you did it !')
-#obj1.edit_embeded()
+
+
+
+obj1=Webhook(WEBHOOK_URL)
+obj1.edit_embeded()
 obj1.sendMessages()

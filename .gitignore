@@ -1,2 +1,4 @@
+# ignore cache file from python executions
+*__pycache__*
 # ignore hidden files 
 .*

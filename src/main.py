@@ -13,12 +13,22 @@ from discord_webhook import DiscordWebhook,DiscordEmbed
 # local import
 from modules import webhook 
 
-
 """
 # method to create and iniatlise the logger of the script/service
 """
-def get_logger():
+def get_logger(verbose=False,debug=False):
     #TODO create logger to be able to report how thing are going 
+    logger= logging.getLogger()
+    logger.setLevel(logging.WARNING) # default level at object creation
+
+    if verbose:
+        logger.setLevel(logging.INFO)
+
+    if debug:
+        logger.setLevel(logging.DEBUG)
+    
+
+
     pass
 
 """
@@ -69,8 +79,10 @@ def get_webhoot_url(path:str):
 """ 
 if __name__ == "__main__" :
 
-    parse_args()
-    
+    args = parse_args()
+    logger = get_logger()
+
+
     # obj1=Webhook(WEBHOOK_URL)
     # obj1.edit_embeded()
     # obj1.sendMessages()

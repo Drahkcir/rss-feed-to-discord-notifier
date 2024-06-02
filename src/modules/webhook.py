@@ -1,3 +1,5 @@
+from discord_webhook import DiscordWebhook,DiscordEmbed
+
 class Webhook:
 
     # constructor

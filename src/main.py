@@ -6,12 +6,9 @@ import argparse
 import sys
 import re
 
-# specific/installed import
-import feedparser
-from discord_webhook import DiscordWebhook,DiscordEmbed
-
 # local import
 from modules import webhook 
+from modules import rss_feed
 
 """
 # method to create and iniatlise the logger of the script/service
@@ -60,7 +57,7 @@ def parse_args():
         exit(-1)
     return args
 
-    
+
 """
 # get the webhook(s) from the file provided  
 """

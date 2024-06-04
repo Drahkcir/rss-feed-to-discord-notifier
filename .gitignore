@@ -2,3 +2,6 @@
 *__pycache__*
 # ignore hidden files 
 .*
+
+# ignore ressources file as they are specific to the usage
+res/

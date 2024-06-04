@@ -18,8 +18,8 @@ class Webhook:
         # you can set the color as a decimal (color=242424) or hex (color="03b2f8") number
         self.embed = DiscordEmbed(title="CERT-FR", description="Lorem ipsum dolor sit", color="03b2f8")
 
-        self.embed.set_author(name="", url="", icon_url="author icon url")        
-        self.embed.set_image(url="")
+        self.embed.set_author(name="", url="", icon_url=config.author_image)        
+        self.embed.set_image(url=config.author_image)
         self.embed.set_thumbnail(url="")
         self.embed.set_footer(text="footer text", icon_url="")
 
@@ -28,10 +28,9 @@ class Webhook:
 
         # add embed object to webhook
         self.webhook.add_embed(self.embed)
-
+    
 
     def send_embeded(self):
-        
         self.webhook.execute(remove_embeds=True)
 
     def send_message(self):

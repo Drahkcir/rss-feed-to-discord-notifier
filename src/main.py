@@ -7,8 +7,9 @@ import sys
 import re
 
 # local import
-from modules import webhook 
+from modules import config 
 from modules import rss_feed
+from modules import webhook
 
 """
 # method to create and iniatlise the logger of the script/service
@@ -54,8 +55,8 @@ if __name__ == "__main__" :
 
     args = parse_args()
     logger = get_logger()
-
-    rss=rss_feed.feed_obj('')
+    
+    rss=rss_feed.feed_obj()
 
     # obj1=Webhook(WEBHOOK_URL)
     # obj1.edit_embeded()

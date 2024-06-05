@@ -55,7 +55,7 @@ if __name__ == "__main__" :
     args = parse_args()
     logger = get_logger()
 
-    rss=rss_feed.feed_obj('https://www.cert.ssi.gouv.fr/feed/')
+    rss=rss_feed.feed_obj('')
 
     # obj1=Webhook(WEBHOOK_URL)
     # obj1.edit_embeded()

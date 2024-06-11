@@ -21,6 +21,15 @@ class configLoader:
         self.check_init_variables()
 
     def check_init_variables(self):
+        for i in ['webhook_url', 'rss_feed_url', 'author_name', 'author_image_url', 'author_url', 'embeded_image_url', 'footer_message', 'footer_image_url', 'last_pub_date_processed']:
+            if self.conf[i] :
+                logging.debug(f'{i} initialisized : {self.conf[i]}')
+                continue
+            else:
+                logging.error(f'{i} not initialisized')
+                raise(f'{i} not initialisized in config section')
+
+        
         #TODO check that every variable needed is well initialized
         pass
         

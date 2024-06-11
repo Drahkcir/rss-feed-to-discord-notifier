@@ -25,7 +25,7 @@ def get_logger(verbose=False,debug=False):
         level = logging.DEBUG
 
     logger = log.setup_custom_logger('root',level)
-        
+
     return logger
 
 
@@ -60,6 +60,11 @@ if __name__ == "__main__" :
     logger = get_logger(verbose=args.verbose, debug=args.debug)
 
     config_obj = config.configLoader(file=args.config)
+    
+    
+    config_obj.pretty_print()
+    
+    # rss=rss_feed.feed_obj()
 
     # obj1=Webhook(WEBHOOK_URL)
     # obj1.edit_embeded()

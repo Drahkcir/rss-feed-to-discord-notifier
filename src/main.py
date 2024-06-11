@@ -57,7 +57,8 @@ def parse_args():
 if __name__ == "__main__" :
 
     args = parse_args()
-    logger = get_logger()
+    logger = get_logger(verbose=args.verbose, debug=args.debug)
+
     config_obj = config.configLoader(file=args.config)
 
     # obj1=Webhook(WEBHOOK_URL)

@@ -7,7 +7,7 @@ def setup_custom_logger(name,level):
     handler.setFormatter(formatter)
 
     logger = logging.getLogger(name)
-    logger.setLevel(logging.WARNING) # default level at object creation    
-
+    logger.setLevel(level) 
+    
     logger.addHandler(handler)
     return logger

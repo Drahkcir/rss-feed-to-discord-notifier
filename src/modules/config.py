@@ -4,9 +4,21 @@ import logging
 logger=logging.getLogger('root')
 
 class configLoader:
+    
     def __init__(self,file:str = 'config.ini' ,section:str = 'DEFAULT'):
+        self.file = file
+        self.section = section
         self.conf = configparser.ConfigParser()
         self.conf.read(file)
+        try:
+            self.conf=self.conf[section]
+        except KeyError as e: 
+            err=f"section '[{section}]' not found in {file}"
+            logger.error(err)
+            raise(e)
+        logger.info(f'section')
+
+        self.check_init_variables()
 
     def check_init_variables(self):
         #TODO check that every variable needed is well initialized

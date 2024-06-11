@@ -18,5 +18,7 @@ class configLoader:
         pass
 
     def pretty_print(self):
-        print(self.conf.items)
-        pass
+        msg=f'file : {self.file} , section : {self.section}\n' 
+        for i in self.conf.items():
+            msg += f'\t{i[0]} = {i[1]} \n'
+        print(msg, end='')

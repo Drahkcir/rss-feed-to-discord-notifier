@@ -7,23 +7,26 @@ import sys
 import re
 
 # local import
+from modules import log
 from modules import config 
 from modules import rss_feed
 from modules import webhook
+
 
 """
 # method to create and iniatlise the logger of the script/service
 """
 def get_logger(verbose=False,debug=False):
-    #TODO create logger to be able to report how thing are going 
-    logger= logging.getLogger()
-    logger.setLevel(logging.WARNING) # default level at object creation
-
+    level = logging.WARNING
     if verbose:
-        logger.setLevel(logging.INFO)
+        level = logging.INFO
 
     if debug:
-        logger.setLevel(logging.DEBUG)    
+        level = logging.DEBUG
+
+    logger = log.setup_custom_logger('root',level)
+        
+    return logger
 
 
 """
@@ -55,8 +58,7 @@ if __name__ == "__main__" :
 
     args = parse_args()
     logger = get_logger()
-    
-    rss=rss_feed.feed_obj()
+    config_obj = config.configLoader(file=args.config)
 
     # obj1=Webhook(WEBHOOK_URL)
     # obj1.edit_embeded()

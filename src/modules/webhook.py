@@ -1,8 +1,10 @@
 import configparser
+import logging
 
 from . import config
 from discord_webhook import DiscordWebhook,DiscordEmbed
 
+logger=logging.getLogger('root')
 
 
 class Webhook:

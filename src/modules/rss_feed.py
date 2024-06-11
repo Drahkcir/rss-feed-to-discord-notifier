@@ -1,5 +1,7 @@
 import feedparser
+import logging
 
+logger=logging.getLogger('root')
 
 class feed_obj:
 

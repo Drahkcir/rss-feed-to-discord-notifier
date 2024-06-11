@@ -1,5 +1,7 @@
 import configparser
+import logging
 
+logger=logging.getLogger('root')
 
 class configLoader:
     def __init__(self,file:str = 'config.ini' ,section:str = 'DEFAULT'):

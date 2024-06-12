@@ -54,7 +54,10 @@ class configLoader:
         logger.error(f'get_field -> key : {key} not found in the config file \'{self.file}\' section [{self.section}]')
         exit(-1)
         
-        pass
+    def save_config(self): 
+        with open(self.file, 'w') as configfile:
+            self.configuration_parser.write(configfile)
+
 
     def pretty_print(self):
         msg=f'file : {self.file} , section : {self.section}\n' 

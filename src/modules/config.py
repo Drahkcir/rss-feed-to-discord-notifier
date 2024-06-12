@@ -21,18 +21,17 @@ class configLoader:
         self.check_init_variables()
 
     def check_init_variables(self):
-        logger.debug('checking the vraible initialization from ini file')
+        logger.debug('check_init_variables -> checking the variable initialization from ini file')
         for i in ['webhook_url', 'rss_feed_url', 'author_name', 
                   'author_image_url', 'author_url', 'embeded_image_url', 
                   'footer_message', 'footer_image_url']:
-            try:
-                if self.conf[i] :
-                    logging.debug(f'{i} initialized : {self.conf[i]}')
-                    continue
-                else:
-                    raise(KeyError)
-            except KeyError: 
-                logging.error(f'{i} not initialized or empty in the file : {self.file} section : [{self.section}]')
+        
+            value = self.get_field(i)
+            if value:
+                logging.debug(f'check_init_variables -> {i} initialized : {value}')
+                continue
+            else:
+                logging.error(f'check_init_variables -> {i} not initialized or empty in the file : {self.file} section : [{self.section}]')
                 exit(-1)
         pass
 

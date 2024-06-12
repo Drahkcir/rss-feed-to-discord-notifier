@@ -33,6 +33,15 @@ class configLoader:
             else:
                 logging.error(f'check_init_variables -> {i} not initialized or empty in the file : {self.file} section : [{self.section}]')
                 exit(-1)
+
+
+    def set_field(self,key:str, value):
+        if isinstance(value,str):
+            value = f"'{value}'"
+        self.configuration_parser.set(self.section, key, value)
+
+        # once updated we save the config to the file to be updated
+        self.save_config()
         pass
 
     def pretty_print(self):

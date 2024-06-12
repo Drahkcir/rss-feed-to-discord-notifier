@@ -21,21 +21,19 @@ class configLoader:
         self.check_init_variables()
 
     def check_init_variables(self):
-        for i in ['webhook_url', 'rss_feed_url', 'author_name', 'author_image_url', 'author_url', 'embeded_image_url', 'footer_message', 'footer_image_url', 'last_pub_date_processed']:
-            if self.conf[i] :
-                logging.debug(f'{i} initialisized : {self.conf[i]}')
-                continue
-            else:
-                logging.error(f'{i} not initialisized')
-                raise(f'{i} not initialisized in config section')
-
-        
-        #TODO check that every variable needed is well initialized
-        pass
-        
-    def save_conf_status(self):
-        #TODO write the init file with the current configuration that we (keep track of wich item in the feed we processed) 
-        self.conf.write(self)
+        logger.debug('checking the vraible initialization from ini file')
+        for i in ['webhook_url', 'rss_feed_url', 'author_name', 
+                  'author_image_url', 'author_url', 'embeded_image_url', 
+                  'footer_message', 'footer_image_url']:
+            try:
+                if self.conf[i] :
+                    logging.debug(f'{i} initialized : {self.conf[i]}')
+                    continue
+                else:
+                    raise(KeyError)
+            except KeyError: 
+                logging.error(f'{i} not initialized or empty in the file : {self.file} section : [{self.section}]')
+                exit(-1)
         pass
 
     def pretty_print(self):

@@ -42,6 +42,18 @@ class configLoader:
 
         # once updated we save the config to the file to be updated
         self.save_config()
+
+    def get_field(self, key:str):
+        val = self.configuration_parser[self.section].get(key,None)
+        regex=r'^([\'"])(.*)\1$'
+        if val:
+            val = re.sub(regex,r'\2',val)
+            logging.debug(f'get_field -> got {key}\'s value : {val}')
+            return val
+        
+        logger.error(f'get_field -> key : {key} not found in the config file \'{self.file}\' section [{self.section}]')
+        exit(-1)
+        
         pass
 
     def pretty_print(self):

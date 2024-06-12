@@ -61,6 +61,6 @@ class configLoader:
 
     def pretty_print(self):
         msg=f'file : {self.file} , section : {self.section}\n' 
-        for i in self.conf.items():
-            msg += f'\t{i[0]} = {i[1]} \n'
+        for i in self.configuration_parser[self.section]:
+            msg += f'\t{i} = {self.configuration_parser[self.section][i]} \n'
         print(msg, end='')

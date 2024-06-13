@@ -37,9 +37,8 @@ def parse_args():
     parser = argparse.ArgumentParser(description='get rss feed updates and send them on a discord server via a webhook')
     #parser.add_argument('-f', '')
     
-    parser.add_argument('-d', '--debug', action='store_true', help='activate debug logs for debugging purpose')
-    parser.add_argument('-v','--verbose', action='store_true', help='set the logger to info level to have more info on activity of the script')
-    parser.add_argument('-c','--config', type=str, default='./src/config.ini', help='path to the config INI file to get the webhook url and the rss feed url')
+    parser.add_argument('-l', '--loop', action='store_true', help='activate the infinite loop mode for continuous listening of RSS feed ')
+    parser.add_argument('-w', '--wait', type=int, choices=range(1, 1800), metavar='[1-1800]', help='time to wait in sec between loop iteration ')
     
     # parse arguments and catch the possible exception that could rise
     try:

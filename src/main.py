@@ -60,10 +60,13 @@ if __name__ == "__main__" :
     logger = get_logger(verbose=args.verbose, debug=args.debug)
 
     config_obj = config.configLoader(file=args.config)
-    
-    
     config_obj.pretty_print()
-    
+
+    ### TESTING / DEBUG ###
+    config_obj.update_field('last_pub_date_processed','test')
+    config_obj.get_field('webhook_url')
+    config_obj.pretty_print()
+
     # rss=rss_feed.feed_obj()
 
     # obj1=Webhook(WEBHOOK_URL)

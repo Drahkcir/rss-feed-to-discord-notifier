@@ -22,6 +22,19 @@ class Webhook:
         self.create_base_embeded(embeded_config=embeded_config)
     
 
+        
+    def create_base_embeded(self, embeded_config:dict):
+        
+        logger.debug(f"name= {embeded_config['author'][0]}, url= {embeded_config['author'][1]}, icon_url= {embeded_config['author'][2]}")
+        self.embed.set_author(name= embeded_config['author'][0], 
+                              url= embeded_config['author'][1], 
+                              icon_url= embeded_config['author'][2])
+        
+        self.embed.set_thumbnail(url= embeded_config['thumbnail'])
+        
+        self.embed.set_footer(text= embeded_config['footer'][0], 
+                              icon_url= embeded_config['footer'][1])
+
         # set timestamp (default is now) accepted types are int, float and datetime
         self.embed.set_timestamp()
 

@@ -42,8 +42,19 @@ class Webhook:
         self.webhook.add_embed(self.embed)
     
 
-    def send_embeded(self):
-        self.webhook.execute(remove_embeds=True)
+    def send(self,retries:int = 3):
+        i = 0 
+        
+        while not ( retries <= i ):
+            i += 1 
+            try:
+                response = self.webhook.execute()
+            except TimeoutError as err:
+                logger.error(f"Oops! Connection to Discord timed out: {err}")
+                continue
+            if response.status_code != 200:
+                logger.error(f"Error while tentatively sending message to discord rc:{response.status_code} : {response.content}")
+                continue
 
-    def send_message(self):
-        response = self.webhook.execute()
+            logger.info(f'message sent to discord with success {response.status_code}')
+            break

@@ -1,13 +1,18 @@
-import configparser
+# std lib import
 import logging
 
-from . import config
+# specific import 
 from discord_webhook import DiscordWebhook,DiscordEmbed
 
+# local import
+from . import config
 logger=logging.getLogger('root')
 
 
 class Webhook:
+
+    def __init__(self): 
+        pass
 
     # constructor
     def __init__(self,url:str, title:str, embeded_config:dict, description:str='notifier', color:str ='03b2f8'):
@@ -58,3 +63,12 @@ class Webhook:
 
             logger.info(f'message sent to discord with success {response.status_code}')
             break
+
+    def set_footer(self, footer_text:str = '', icon_url:str = None):
+        self.embed.set_footer(text=footer_text, icon_url=icon_url)
+
+    def set_author(self,name:str, url:str, icon:str = '' ):
+        self.embed.set_author(name=name, url=url, icon_url="author icon url")
+
+    def set_thumbnail(self, url:str = ''):
+        self.embed.set_thumbnail(url=url)

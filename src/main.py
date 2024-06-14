@@ -34,20 +34,30 @@ def get_logger(verbose=False,debug=False):
 """
 def parse_args():
     # Instantiate the parser
-    parser = argparse.ArgumentParser(description='get rss feed updates and send them on a discord server via a webhook')
-    #parser.add_argument('-f', '')
+    parser = argparse.ArgumentParser(description='get rss feed updates and send them on a discord server via a webhook', add_help=False)
+
+    parser.add_argument('-h', '--help', action='help')
+
+    parser.add_argument('-d',  '--debug', action='store_true', help='activate debug logs for debugging purpose')
+    parser.add_argument('-v', '--verbose', action='store_true', help='set the logger to info level to have more info on activity of the script')
+    parser.add_argument('-c', '--config', type=str, default='./src/config.ini', help='path to the config INI file to get the webhook url and the rss feed url')
     
-    parser.add_argument('-l', '--loop', action='store_true', help='activate the infinite loop mode for continuous listening of RSS feed ')
-    parser.add_argument('-w', '--wait', type=int, choices=range(1, 1800), metavar='[1-1800]', help='time to wait in sec between loop iteration ')
-    
+    parser.add_argument('-l', '--loop', type=int, choices=range(0, 1800), metavar='[0-1800]', default=0,
+                        help='if set to other than 0 the programm will loop to continuously to read the feed every {X} seconds')
+
     # parse arguments and catch the possible exception that could rise
-    try:
-        args = parser.parse_args()
-    except BaseException as e:
-        print(f'Error : parsing the arguments',file=sys.stderr)
-        parser.print_help()
-        exit(-1)
+    args = parser.parse_args()
+
     return args
+
+
+"""
+# main (default) process for one reading of the feed parser and process unprocessed feed item (based on last pubDate in config ini)
+"""
+def main_process():
+    pass
+    
+    
 
 
 """

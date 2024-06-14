@@ -93,19 +93,19 @@ def main_process():
 """ 
 if __name__ == "__main__" :
 
+    # get args and configs
     args = parse_args()
     logger = get_logger(verbose=args.verbose, debug=args.debug)
+    conf = config.configLoader(file=args.config)
 
-    config_obj = config.configLoader(file=args.config)
-    config_obj.pretty_print()
-
+    
+    logger.info('script is finished...')
+    exit(0)
     ### TESTING / DEBUG ###
-    config_obj.update_field('last_pub_date_processed','test')
-    config_obj.get_field('webhook_url')
-    config_obj.pretty_print()
+    # conf.pretty_print()
 
     # rss=rss_feed.feed_obj()
 
-    # obj1=Webhook(WEBHOOK_URL)
-    # obj1.edit_embeded()
-    # obj1.sendMessages()
+    
+    #obj1.edit_embeded()
+    #obj1.sendMessages()

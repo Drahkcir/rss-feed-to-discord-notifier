@@ -52,6 +52,24 @@ def parse_args():
 
 
 """
+# prepare dictionnary for our embedded message from the config object
+"""
+def make_webhooks_config(config:config.configLoader): 
+    embed = {
+        'author': (config.get_field('author_name'), 
+                   config.get_field('author_url'),
+                   config.get_field('author_image_url')),
+        'thumbnail': config.get_field('embeded_image_url'),
+        'footer': (config.get_field('footer_message'),config.get_field('footer_image_url')),
+        'timestamps': ''
+    }
+
+    logger.debug(f'make_webhook_config -> creating dictionnary for embeded message : {embed}')
+
+    return embed
+
+
+"""
 # main (default) process for one reading of the feed parser and process unprocessed feed item (based on last pubDate in config ini)
 """
 def main_process():

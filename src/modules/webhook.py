@@ -10,20 +10,17 @@ logger=logging.getLogger('root')
 class Webhook:
 
     # constructor
-    def __init__(self,url:str, title:str, description:str='notifier'):
-        self.webhook = DiscordWebhook(url,rate_limit_retry=True)
-        self.embed=None
+    def __init__(self,url:str, title:str, embeded_config:dict, description:str='notifier', color:str ='03b2f8'):
         
+        logger.debug(f'__init__() --> url: {url}')
+        self.webhook = DiscordWebhook(url, rate_limit_retry=True)  
         
-    def create_embeded(self,config:configparser):
+        logger.debug(f'__init__() --> title: {title}  description: {description} color:{color}')
+        self.embed = DiscordEmbed(title=title, description=description, color=color)
 
-        # you can set the color as a decimal (color=242424) or hex (color="03b2f8") number
-        self.embed = DiscordEmbed(title="CERT-FR", description="Lorem ipsum dolor sit", color="03b2f8")
 
-        self.embed.set_author(name="", url="", icon_url=config.author_image)        
-        self.embed.set_image(url=config.author_image)
-        self.embed.set_thumbnail(url="")
-        self.embed.set_footer(text="footer text", icon_url="")
+        self.create_base_embeded(embeded_config=embeded_config)
+    
 
         # set timestamp (default is now) accepted types are int, float and datetime
         self.embed.set_timestamp()

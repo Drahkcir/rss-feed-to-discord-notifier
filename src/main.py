@@ -73,9 +73,19 @@ def make_webhooks_config(config:config.configLoader):
 # main (default) process for one reading of the feed parser and process unprocessed feed item (based on last pubDate in config ini)
 """
 def main_process():
-    pass
     
     
+    dictionnary = make_webhooks_config(conf)
+    
+    # creating the webhook 
+    webhook_obj = webhook.Webhook(url = conf.get_field('webhook_url'), title='multiple vulnérabilité dans Windows', embeded_config=dictionnary) 
+    # sending the webhook 
+    webhook_obj.send()
+
+    return 0
+
+    
+
 
 
 """

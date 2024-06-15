@@ -6,7 +6,21 @@ logger=logging.getLogger('root')
 class feed_obj:
 
     def __init__(self,url:str):
-        self.feed = feedparser.parse(url)
+
+        self.url=url
+        logger.info(f'__init__() -> parsing the rss feed : {url}')
+        try:
+            self.feed = feedparser.parse(url)
+        except:
+            logger.error(f'an error occured when attempting to parse the rss feed plaease verify that the url is right in the config file : {url}')
+            exit(-1)
+        logger.debug(f'__init__() -> rss feed sucessfully parsed : ')
+        
+        # get item from the rss_feed
+        self.items= self.feed['entries']
+        
+        self.get_feed_general_info()
+        
 
     def get_unprocessed_entry(self):
         pass

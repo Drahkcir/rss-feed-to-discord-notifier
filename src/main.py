@@ -76,7 +76,8 @@ def main_process():
     
     
     dictionnary = make_webhooks_config(conf)
-    
+
+    rss_obj=rss_feed.feed_obj(conf.get_field('rss_feed_url'))
     # creating the webhook 
     webhook_obj = webhook.Webhook(url = conf.get_field('webhook_url'), title='multiple vulnérabilité dans Windows', embeded_config=dictionnary) 
     # sending the webhook 

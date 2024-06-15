@@ -10,3 +10,7 @@ class feed_obj:
 
     def get_unprocessed_entry(self):
         pass
+
+    def identify_author():
+        pass
+

@@ -72,14 +72,22 @@ def make_webhooks_config(config:config.configLoader):
 """
 # main (default) process for one reading of the feed parser and process unprocessed feed item (based on last pubDate in config ini)
 """
-def main_process():
+def main_process(conf:config.configLoader):
     
     
     dictionnary = make_webhooks_config(conf)
 
     rss_obj=rss_feed.feed_obj(conf.get_field('rss_feed_url'))
+    exit(0)
+
+    # TODO getting the description (message) from rss_feed
+    title = 'multiple vulnérabilité dans Windows'
+    message = 'multiple vulnérabilité dans Windows have been found in and are activelly '
+
+ 
+
     # creating the webhook 
-    webhook_obj = webhook.Webhook(url = conf.get_field('webhook_url'), title='multiple vulnérabilité dans Windows', embeded_config=dictionnary) 
+    webhook_obj = webhook.Webhook(url = conf.get_field('webhook_url'), title=title, description=message, embeded_config=dictionnary) 
     # sending the webhook 
     webhook_obj.send()
 
@@ -106,8 +114,6 @@ if __name__ == "__main__" :
     exit(0)
     ### TESTING / DEBUG ###
     # conf.pretty_print()
-
-    # rss=rss_feed.feed_obj()
 
     
     #obj1.edit_embeded()

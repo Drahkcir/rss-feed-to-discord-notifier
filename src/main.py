@@ -98,7 +98,9 @@ if __name__ == "__main__" :
     args = parse_args()
     logger = get_logger(verbose=args.verbose, debug=args.debug)
     conf = config.configLoader(file=args.config)
-
+    
+    
+    main_process(conf)
     
     logger.info('script is finished...')
     exit(0)

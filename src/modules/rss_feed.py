@@ -14,3 +14,12 @@ class feed_obj:
     def identify_author():
         pass
 
+    def pretty_print_entries_title(self):
+
+        pp = [f'url : {self.url}'] 
+
+        for key in self.feed['entries'][0].keys():
+            pp.append(f'{key} :  {self.feed["entries"][0][key]}')
+        print ('\n'.join(pp))
+        return
+        

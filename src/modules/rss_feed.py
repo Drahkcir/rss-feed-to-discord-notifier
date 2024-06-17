@@ -43,6 +43,12 @@ class feed_obj:
                 unprocessed_entries = self.items()
         return unprocessed_entries
 
+    # method to identify the author of the item/entry for feed where there is multiple authors (socials, news article, ...) which will be in a field of the embeded message
+    def identify_author(item:dict):
+        if 'author' in item :
+            print(item['author']['name'])
+            
+            return 
         pass
 
     def get_feed_general_info(self):

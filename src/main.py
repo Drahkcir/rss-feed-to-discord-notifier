@@ -41,7 +41,7 @@ def parse_args():
     parser.add_argument('-d',  '--debug', action='store_true', help='activate debug logs for debugging purpose')
     parser.add_argument('-v', '--verbose', action='store_true', help='set the logger to info level to have more info on activity of the script')
     parser.add_argument('-c', '--config', type=str, default='./src/config.ini', help='path to the config INI file to get the webhook url and the rss feed url')
-    
+    parser.add_argument('-s', '--section', type=str, default='DEFAULT', help='Section of the config INI file to get the webhook url and the rss feed url')
     parser.add_argument('-l', '--loop', type=int, choices=range(0, 1800), metavar='[0-1800]', default=0,
                         help='if set to other than 0 the programm will loop to continuously to read the feed every {X} seconds')
 
@@ -75,19 +75,16 @@ def make_webhooks_config(config:config.configLoader):
 def main_process(conf:config.configLoader):
     
     
-    dictionnary = make_webhooks_config(conf)
+    embeded_config = make_webhooks_config(conf)
 
     rss_obj=rss_feed.feed_obj(conf.get_field('rss_feed_url'))
-    exit(0)
 
     # TODO getting the description (message) from rss_feed
-    title = 'multiple vulnérabilité dans Windows'
-    message = 'multiple vulnérabilité dans Windows have been found in and are activelly '
-
- 
+    title = ''
+    message = ''
 
     # creating the webhook 
-    webhook_obj = webhook.Webhook(url = conf.get_field('webhook_url'), title=title, description=message, embeded_config=dictionnary) 
+    webhook_obj = webhook.Webhook(url = conf.get_field('webhook_url'), title=title, description=message, embeded_config=embeded_config) 
     # sending the webhook 
     webhook_obj.send()
 
@@ -105,7 +102,7 @@ if __name__ == "__main__" :
     # get args and configs
     args = parse_args()
     logger = get_logger(verbose=args.verbose, debug=args.debug)
-    conf = config.configLoader(file=args.config)
+    conf = config.configLoader(file=args.config,section=args.section)
     
     
     main_process(conf)

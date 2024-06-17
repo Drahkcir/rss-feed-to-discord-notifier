@@ -1,5 +1,6 @@
 import feedparser
 import logging
+import datetime
 
 logger=logging.getLogger('root')
 
@@ -17,9 +18,11 @@ class feed_obj:
         logger.debug(f'__init__() -> rss feed sucessfully parsed : ')
         
         # get item from the rss_feed
-        self.items= self.feed['entries']
+        self.items = self.feed['entries']
         
-        self.get_feed_general_info()
+        self.feed_info = self.get_feed_general_info()
+        
+
         
 
     def get_unprocessed_entry(self,last_processed_date:datetime):
@@ -43,6 +46,7 @@ class feed_obj:
                 unprocessed_entries = self.items()
         return unprocessed_entries
 
+
     # method to identify the author of the item/entry for feed where there is multiple authors (socials, news article, ...) which will be in a field of the embeded message
     def identify_author(item:dict):
         if 'author' in item :
@@ -63,7 +67,7 @@ class feed_obj:
         pp = [f'url : {self.url}'] 
 
         for key in self.feed['entries'][0].keys():
-            pp.append(f'{key} :  {self.feed["entries"][0][key]}')
+            pp.append(f'{key} :  {self.items[0][key]}')
         print ('\n'.join(pp))
         return
         

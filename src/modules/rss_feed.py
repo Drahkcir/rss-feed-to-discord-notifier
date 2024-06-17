@@ -52,15 +52,11 @@ class feed_obj:
         pass
 
     def get_feed_general_info(self):
-        #print(self.feed)
         
-        print(self.feed['feed']['title'])
-        print(self.feed['feed']['link'])
-        print(self.feed['feed']['subtitle'])
-        print(self.feed['feed']['docs'])
-        print(self.feed['feed']['generator'])
-        print(self.feed['feed']['language'])
-        print(self.feed['feed']['updated'])
+        for key in self.items.keys():
+            print(f'{key} : {self.items[key]}')
+        # TODO keys of interest : 'title' | 'link' | 'subtitle' | 'updated' 
+        
 
     def pretty_print_entries_title(self):
 

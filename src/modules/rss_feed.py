@@ -56,11 +56,11 @@ class feed_obj:
         pass
 
     def get_feed_general_info(self):
-        
-        for key in self.items.keys():
-            print(f'{key} : {self.items[key]}')
-        # TODO keys of interest : 'title' | 'link' | 'subtitle' | 'updated' 
-        
+        self.feed_info = {}
+        for key in self.feed['feed'].keys():
+            if key in [ 'title', 'link', 'subtitle', 'updated']:
+                self.feed_info[key] = self.feed['feed'][key]             
+                print(f'{key} : {self.feed['feed'][key]}\n')
 
     def pretty_print_entries_title(self):
 

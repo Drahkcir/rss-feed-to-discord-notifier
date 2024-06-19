@@ -38,16 +38,16 @@ class feed_obj:
                 else:
                     logger.error(f'get_unprocessed_entry() -> unable to identify item {item} creation date field')
                     continue
-
+                
                 logger.debug(f'get_unprocessed_entry() -> adding {item.title} to list of unprocessed items')
                 item_date = item[date_field]
-            
+                
                 if item[date_field] > last_processed_date :
                     unprocessed_entries.append(item)
                     logger.debug(f'get_unprocessed_entry() -> adding {item.title} to list of unprocessed items')
-            else:
+        else:
             logger.info(f'get_unprocessed_entry() -> adding all items to list of unprocessed items since last processed items isn\'t initialized')
-                unprocessed_entries = self.items()
+            unprocessed_entries = self.items()
         return unprocessed_entries
 
 
@@ -67,11 +67,9 @@ class feed_obj:
                 print(f'{key} : {self.feed['feed'][key]}\n')
 
     def pretty_print_entries_title(self):
-
         pp = [f'url : {self.url}'] 
-
-        for key in self.feed['entries'][0].keys():
-            pp.append(f'{key} :  {self.items[0][key]}')
+        for i in self.items:
+            pp.append(f'{i.title}')
         print ('\n'.join(pp))
-        return
+        
         

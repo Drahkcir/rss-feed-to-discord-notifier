@@ -78,7 +78,10 @@ def main_process(conf:config.configLoader):
     embeded_config = make_webhooks_config(conf)
 
     rss_obj=rss_feed.feed_obj(conf.get_field('rss_feed_url'))
-
+    rss_obj.pretty_print_entries_title()
+    
+    rss_obj.get_unprocessed_entry(conf.get_field('last_pub_date_processed'))
+    
     # TODO getting the description (message) from rss_feed
     title = ''
     message = ''
@@ -86,7 +89,7 @@ def main_process(conf:config.configLoader):
     # creating the webhook 
     webhook_obj = webhook.Webhook(url = conf.get_field('webhook_url'), title=title, description=message, embeded_config=embeded_config) 
     # sending the webhook 
-    webhook_obj.send()
+    #webhook_obj.send()
 
     return 0
 

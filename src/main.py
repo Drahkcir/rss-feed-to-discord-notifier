@@ -80,17 +80,19 @@ def main_process(conf:config.configLoader):
     rss_obj=rss_feed.feed_obj(conf.get_field('rss_feed_url'))
     rss_obj.pretty_print_entries_title()
     
-    rss_obj.get_unprocessed_entry(conf.get_field('last_pub_date_processed'))
     
-    # TODO getting the description (message) from rss_feed
-    title = ''
-    message = ''
+    if rss_obj.get_unprocessed_entry(conf.get_field('last_pub_date_processed')) != 0 :
+        logger.info('no unprocessed entries to send to discord')
+        return
+     
+    for item in rss_obj.unprocessed_entries:
+        
+        message = f'{item.description} \n\nlink : {item.link}'
 
-    # creating the webhook 
-    webhook_obj = webhook.Webhook(url = conf.get_field('webhook_url'), title=title, description=message, embeded_config=embeded_config) 
-    # sending the webhook 
-    #webhook_obj.send()
-
+        # creating the webhook 
+        webhook_obj = webhook.Webhook(url = conf.get_field('webhook_url'), title=item.title, description=message, embeded_config=embeded_config) 
+        # sending the webhook 
+        webhook_obj.send()
     return 0
 
     

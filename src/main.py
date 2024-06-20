@@ -109,14 +109,7 @@ if __name__ == "__main__" :
     logger = get_logger(verbose=args.verbose, debug=args.debug)
     conf = config.configLoader(file=args.config,section=args.section)
     
-    
     main_process(conf)
     
     logger.info('script is finished...')
     exit(0)
-    ### TESTING / DEBUG ###
-    # conf.pretty_print()
-
-    
-    #obj1.edit_embeded()
-    #obj1.sendMessages()

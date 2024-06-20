@@ -62,7 +62,7 @@ class feed_obj:
         for key in self.feed['feed'].keys():
             if key in [ 'title', 'link', 'subtitle', 'updated']:
                 self.feed_info[key] = self.feed['feed'][key]             
-                print(f'{key} : {self.feed['feed'][key]}\n')
+                print(f'{key} : {self.feed["feed"][key]}\n')
 
     def pretty_print_entries_title(self):
         pp = [f'url : {self.url}'] 

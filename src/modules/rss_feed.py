@@ -9,17 +9,22 @@ class feed_obj:
 
     def __init__(self,url:str):
         self.url=url
+        self.unprocessed_entries = []
+        self.process_date = time.time()
+        
+        
         logger.info(f'__init__() -> parsing the rss feed : {url}')
+        
         try:
             self.feed = feedparser.parse(url)
         except:
             logger.error(f'an error occured when attempting to parse the rss feed plaease verify that the url is right in the config file : {url}')
             exit(-1)
-        logger.debug(f'__init__() -> rss feed sucessfully parsed : ')
+        
+        logger.debug(f'__init__() -> rss feed sucessfully parsed : {self.process_date}')
         
         # get item from the rss_feed
         self.items = self.feed['entries']
-        
         self.feed_info = self.get_feed_general_info()
         
         
@@ -41,12 +46,12 @@ class feed_obj:
                     continue
                 
                 if item[date_field] > last_processed_date :
-                    unprocessed_entries.append(item)
+                    self.unprocessed_entries.append(item)
                     logger.debug(f'get_unprocessed_entry() -> adding {item.title} to list of unprocessed items')
         else:
             logger.info(f'get_unprocessed_entry() -> adding all items to list of unprocessed items since last processed items isn\'t initialized')
-            unprocessed_entries = self.items()
-        return unprocessed_entries
+            self.unprocessed_entries = self.items
+        return 0 if self.unprocessed_entries else 1
 
 
     # method to identify the author of the item/entry for feed where there is multiple authors (socials, news article, ...) which will be in a field of the embeded message

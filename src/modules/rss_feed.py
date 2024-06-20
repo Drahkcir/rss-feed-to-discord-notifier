@@ -5,9 +5,9 @@ import time
 logger=logging.getLogger('root')
 
 class feed_obj:
+    
 
     def __init__(self,url:str):
-
         self.url=url
         logger.info(f'__init__() -> parsing the rss feed : {url}')
         try:
@@ -22,11 +22,12 @@ class feed_obj:
         
         self.feed_info = self.get_feed_general_info()
         
+        
 
         
 
     def get_unprocessed_entry(self,last_processed_date:str):
-        unprocessed_entries=[]
+        
         if last_processed_date:
             last_processed_date = time.strptime(last_processed_date)
             for item in self.items:
@@ -38,9 +39,6 @@ class feed_obj:
                 else:
                     logger.error(f'get_unprocessed_entry() -> unable to identify item {item} creation date field')
                     continue
-                
-                logger.debug(f'get_unprocessed_entry() -> adding {item.title} to list of unprocessed items')
-                item_date = item[date_field]
                 
                 if item[date_field] > last_processed_date :
                     unprocessed_entries.append(item)

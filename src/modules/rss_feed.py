@@ -20,7 +20,7 @@ class feed_obj:
             logger.error(f'an error occured when attempting to parse the rss feed plaease verify that the url is right in the config file : {url}')
             exit(-1)
         
-        logger.debug(f'__init__() -> rss feed sucessfully parsed : {self.process_date}')
+        logger.info(f'__init__() -> rss feed sucessfully parsed : {self.process_date}')
         
         # get item from the rss_feed
         self.items = self.feed['entries']
@@ -30,8 +30,7 @@ class feed_obj:
 
         
 
-    def get_unprocessed_entry(self,last_processed_date:str):
-        
+    def get_unprocessed_entry(self,last_processed_date:str):        
         if last_processed_date:
             last_processed_date = time.strptime(last_processed_date)
             for item in self.items:

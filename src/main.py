@@ -78,8 +78,6 @@ def main_process(conf:config.configLoader):
     embeded_config = make_webhooks_config(conf)
 
     rss_obj=rss_feed.feed_obj(conf.get_field('rss_feed_url'))
-    rss_obj.pretty_print_entries_title()
-    
     
     if rss_obj.get_unprocessed_entry(conf.get_field('last_pub_date_processed')) != 0 :
         logger.info('no unprocessed entries to send to discord')

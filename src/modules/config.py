@@ -36,10 +36,10 @@ class configLoader:
                 exit(-1)
 
 
-    def set_field(self,key:str, value):
+    def set_field(self,key:str, value:str):
         if isinstance(value,str):
             value = f"'{value}'"
-        self.configuration_parser.set(self.section, key, value)
+        self.configuration_parser.set(self.section, key, str(value))
 
         # once updated we save the config to the file to be updated
         self.save_config()

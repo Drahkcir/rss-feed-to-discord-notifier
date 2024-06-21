@@ -10,8 +10,7 @@ class feed_obj:
     def __init__(self,url:str):
         self.url=url
         self.unprocessed_entries = []
-        self.process_date = time.time()
-        
+        self.process_date = time.ctime()
         
         logger.info(f'__init__() -> parsing the rss feed : {url}')
         

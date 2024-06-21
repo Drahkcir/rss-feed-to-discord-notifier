@@ -93,6 +93,8 @@ def main_process(conf:config.configLoader):
         webhook_obj = webhook.Webhook(url = conf.get_field('webhook_url'), title=item.title, description=message, embeded_config=embeded_config) 
         # sending the webhook 
         webhook_obj.send()
+
+    conf.set_field('last_pub_date_processed',rss_obj.process_date)
     return 0
 
     

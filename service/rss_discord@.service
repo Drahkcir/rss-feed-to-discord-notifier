@@ -1,5 +1,5 @@
 [Unit]
-Description= " file %i"
+Description=launch the main.py script to with the config.ini file and load the section %i
 PartOf=rss.target
 #OnFailure=failure_handler@%i.service
 

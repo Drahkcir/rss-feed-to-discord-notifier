@@ -3,8 +3,8 @@
 #standard lib imports
 import logging
 import argparse
-import sys
-import re
+import time
+
 
 # local import
 from modules import log
@@ -72,27 +72,35 @@ def make_webhooks_config(config:config.configLoader):
 """
 # main (default) process for one reading of the feed parser and process unprocessed feed item (based on last pubDate in config ini)
 """
-def main_process(conf:config.configLoader):
+def main_process(conf:config.configLoader, loop:bool = False, sleep:int = 0 ):
     
     
     embeded_config = make_webhooks_config(conf)
 
-    rss_obj=rss_feed.feed_obj(conf.get_field('rss_feed_url'))
-    
-    if rss_obj.get_unprocessed_entry(conf.get_field('last_pub_date_processed')) != 0 :
-        logger.info('no unprocessed entries to send to discord')
-        return
-     
-    for item in rss_obj.unprocessed_entries:
+    while True:
+
+        rss_obj=rss_feed.feed_obj(conf.get_field('rss_feed_url'))
         
-        message = f'{item.description} \n\nlink : {item.link}'
+        if rss_obj.get_unprocessed_entry(conf.get_field('last_pub_date_processed')) != 0 :
+            logger.info('no unprocessed entries to send to discord')
+            return
+        
+        for item in rss_obj.unprocessed_entries:
+            
+            message = f'{item.description} \n\nlink : {item.link}'
 
-        # creating the webhook 
-        webhook_obj = webhook.Webhook(url = conf.get_field('webhook_url'), title=item.title, description=message, embeded_config=embeded_config) 
-        # sending the webhook 
-        webhook_obj.send()
+            # creating the webhook 
+            webhook_obj = webhook.Webhook(url = conf.get_field('webhook_url'), title=item.title, description=message, embeded_config=embeded_config) 
+            # sending the webhook 
+            webhook_obj.send()
 
-    conf.set_field('last_pub_date_processed',rss_obj.process_date)
+        conf.set_field('last_pub_date_processed',rss_obj.process_date)
+        
+        if not loop:
+            break
+        
+        time.sleep(sleep)
+
     return 0
 
     
@@ -108,8 +116,10 @@ if __name__ == "__main__" :
     args = parse_args()
     logger = get_logger(verbose=args.verbose, debug=args.debug)
     conf = config.configLoader(file=args.config,section=args.section)
-    
-    main_process(conf)
+
+    loop_mode = True if  args.loop > 0 else False
+    main_process(conf, loop=loop_mode, sleep=args.loop)
+        
     
     logger.info('script is finished...')
     exit(0)

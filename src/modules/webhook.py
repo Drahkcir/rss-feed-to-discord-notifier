@@ -11,9 +11,6 @@ logger=logging.getLogger('root')
 
 class Webhook:
 
-    def __init__(self): 
-        pass
-
     # constructor
     def __init__(self,url:str, title:str, embeded_config:dict, description:str='notifier', color:str ='03b2f8'):
         

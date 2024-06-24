@@ -26,9 +26,6 @@ class feed_obj:
         self.items = self.feed['entries']
         self.feed_info = self.get_feed_general_info()
         
-        
-
-        
 
     def get_unprocessed_entry(self,last_processed_date:str):        
         if last_processed_date:
@@ -56,9 +53,9 @@ class feed_obj:
     def identify_author(item:dict):
         if 'author' in item :
             print(item['author']['name'])
-            
-            return 
-        pass
+            author = item['author']['name']
+            return author
+        return
 
     def get_feed_general_info(self):
         self.feed_info = {}

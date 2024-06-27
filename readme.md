@@ -22,6 +22,6 @@ urllib3==2.2.1
 
 ## Configuration 
 
-the configuration is setup by a ini file that can be anywhere and called with the option -c at launch by default it will be /src/config.ini
+the configurations is setup by a ini file that can be anywhere and called with the option -c at launch by default it will be /src/config.ini
 
 ##

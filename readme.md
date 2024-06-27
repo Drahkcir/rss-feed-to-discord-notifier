@@ -22,6 +22,25 @@ urllib3==2.2.1
 
 ## Configuration 
 
-the configurations is setup by a ini file that can be anywhere and called with the option -c at launch by default it will be /src/config.ini
+the configuration is setup by a ini file that can be anywhere and called with the option -c at launch by default it will be /src/config.ini
 
-##
+```ini
+[default]
+webhook_url = '' 
+rss_feed_url = ''
+
+author_name = ''
+author_image_url = ''
+author_url = ''
+
+embeded_image_url = ''
+
+footer_message = ''
+footer_image_url = ''
+
+
+# this will be updated at each item processed to avoid treating several time the same item 
+last_pub_date_processed = ''
+```
+
+## 

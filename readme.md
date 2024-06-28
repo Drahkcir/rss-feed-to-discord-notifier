@@ -43,4 +43,6 @@ footer_image_url = ''
 last_pub_date_processed = ''
 ```
 
+you can have mutlple configuration in the same file and change the section loaded a exec via the `-s,--section` argument of the main script.
+
 ## 

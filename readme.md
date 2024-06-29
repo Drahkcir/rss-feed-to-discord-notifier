@@ -19,6 +19,25 @@ requests==2.32.2
 sgmllib3k==1.0.0
 urllib3==2.2.1
 ```
+## Usage
+
+```
+usage: main.py [-h] [-d] [-v] [-c CONFIG] [-s SECTION] [-l [0-1800]]
+
+get rss feed updates and send them on a discord server via a webhook
+
+options:
+  -h, --help
+  -d, --debug           activate debug logs for debugging purpose
+  -v, --verbose         set the logger to info level to have more info on activity of the script
+  -c CONFIG, --config CONFIG
+                        path to the config INI file to get the webhook url and the rss feed url
+  -s SECTION, --section SECTION
+                        Section of the config INI file to get the webhook url and the rss feed url
+  -l [0-1800], --loop [0-1800]
+                        if set to other than 0 the programm will loop to continuously to read the feed every {X} seconds
+```
+
 
 ## Configuration 
 

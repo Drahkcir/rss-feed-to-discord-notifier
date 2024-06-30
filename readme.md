@@ -6,19 +6,21 @@ the first goal was to be specific to a rss_feed in particular whisch is the CERT
 
 ## Prerequisite
 
+- Python3 installed with the following modules imported :
 
-Python3 with the following modules imported :
+  ```python 
+  certifi==2024.2.2
+  charset-normalizer==3.3.2
+  discord-webhook==1.3.1
+  feedparser==6.0.11
+  idna==3.7
+  requests==2.32.2
+  sgmllib3k==1.0.0
+  urllib3==2.2.1
+  ```
+- A configured webhook url for discord [see link](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks)
 
-```python 
-certifi==2024.2.2
-charset-normalizer==3.3.2
-discord-webhook==1.3.1
-feedparser==6.0.11
-idna==3.7
-requests==2.32.2
-sgmllib3k==1.0.0
-urllib3==2.2.1
-```
+
 ## Usage
 
 ```

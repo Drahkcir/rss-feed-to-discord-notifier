@@ -6,6 +6,9 @@ the first goal was to be specific to a rss_feed in particular whisch is the CERT
 
 ## Prerequisite
 
+
+- A configured webhook url for discord [see link](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks)
+- A RSS feed
 - Python3 installed with the following modules imported :
 
   ```python 
@@ -18,8 +21,6 @@ the first goal was to be specific to a rss_feed in particular whisch is the CERT
   sgmllib3k==1.0.0
   urllib3==2.2.1
   ```
-- A configured webhook url for discord [see link](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks)
-
 
 ## Usage
 

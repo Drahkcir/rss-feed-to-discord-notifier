@@ -65,6 +65,11 @@ footer_image_url = ''
 last_pub_date_processed = ''
 ```
 
-you can have mutlple configuration in the same file and change the section loaded a exec via the `-s,--section` argument of the main script.
+You can have mutlple configurations in the same file and change the section loaded a exec via the `-s,--section` argument of the main script.
 
-## 
+You have two mode with the script:
+- loop : the script will loop and continuously query the rss feed after some time (set via the argumment `-l <x>,-loop <x>` x being the time to wait between queries)
+- oneshot : the oneshot mode (when no `--loop` or `--loop 0` argument is passed the script will just query the rss feed and will stop after) this allow to use systemd timers or crontab if you prefer and be able to better monitor the executions  
+
+## services/timers systemd 
+

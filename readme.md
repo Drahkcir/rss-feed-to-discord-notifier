@@ -73,3 +73,5 @@ You have two mode with the script:
 
 ## services/timers systemd 
 
+a set of example systemd units is availlable with the service which need no modification apart from potential arguments
+and timer which need to be edited to mett your need.

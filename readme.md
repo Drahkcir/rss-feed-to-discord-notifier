@@ -13,12 +13,11 @@ the first goal was to be specific to a rss_feed in particular whisch is the CERT
 
 ## Prerequisite
 
-
 - A configured webhook url for discord [see link](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks)
 - A RSS feed
 - Python3 installed with the following modules imported :
 
-  ```python 
+  ```python
   certifi==2024.2.2
   charset-normalizer==3.3.2
   discord-webhook==1.3.1
@@ -31,7 +30,7 @@ the first goal was to be specific to a rss_feed in particular whisch is the CERT
 
 ## Usage
 
-```
+```bash
 usage: main.py [-h] [-d] [-v] [-c CONFIG] [-s SECTION] [-l [0-1800]]
 
 get rss feed updates and send them on a discord server via a webhook
@@ -48,8 +47,7 @@ options:
                         if set to other than 0 the programm will loop to continuously to read the feed every {X} seconds
 ```
 
-
-## Configuration 
+## Configuration
 
 the configuration is setup by a ini file that can be anywhere and called with the option -c at launch by default it will be /src/config.ini
 
@@ -75,10 +73,16 @@ last_pub_date_processed = ''
 You can have mutlple configurations in the same file and change the section loaded a exec via the `-s,--section` argument of the main script.
 
 You have two mode with the script:
+
 - loop : the script will loop and continuously query the rss feed after some time (set via the argumment `-l <x>,-loop <x>` x being the time to wait between queries)
 - oneshot : the oneshot mode (when no `--loop` or `--loop 0` argument is passed the script will just query the rss feed and will stop after) this allow to use systemd timers or crontab if you prefer and be able to better monitor the executions  
 
-## services/timers systemd 
+## services/timers systemd
 
 a set of example systemd units is availlable with the service which need no modification apart from potential arguments
 and timer which need to be edited to mett your need.
+
+## links & documentations
+
+- [Arch Linux systemd documentaion](https://wiki.archlinux.org/index.php/Systemd)
+- [Debian systemd documentation](https://wiki.debian.org/systemd/Services)

@@ -3,6 +3,13 @@
 This project allow via a configuration file to listen to a rss_feed and to send the news items to a discord webhook
 the first goal was to be specific to a rss_feed in particular whisch is the CERT-FR rss but the goal is now to be more generic a try and handles more platform or at least handle several standardized format.  
 
+## summary
+
+- [Prerequisite](#prerequisite)
+- [Usage](#usage)
+- [Configuration](#configuration)
+- [Services/Timers systemd](#servicestimers-systemd)
+- [links & documentations](#links--documentations)
 
 ## Prerequisite
 

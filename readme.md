@@ -85,4 +85,4 @@ and timer which need to be edited to mett your need.
 ## links & documentations
 
 - [Arch Linux systemd documentaion](https://wiki.archlinux.org/index.php/Systemd)
-- [Debian systemd documentation](https://wiki.debian.org/systemd/Services)
+- [Debian Linux systemd documentation](https://wiki.debian.org/systemd/Services)

@@ -86,3 +86,4 @@ and timer which need to be edited to mett your need.
 
 - [Arch Linux systemd documentaion](https://wiki.archlinux.org/index.php/Systemd)
 - [Debian Linux systemd documentation](https://wiki.debian.org/systemd/Services)
+- [python library discord-webhook](https://pypi.org/project/discord-webhook/)

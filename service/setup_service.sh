@@ -19,3 +19,16 @@ arguments:
 EOF
 
 }
+
+while getopts ":vh" o; do
+        case "${o}" in
+        v)
+                verbose=true
+                ;;
+        *)
+            usage
+            ;;
+    esac
+done
+shift $((OPTIND-1))
+

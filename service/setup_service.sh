@@ -20,6 +20,17 @@ EOF
 
 }
 
+function clean_old_services(){
+
+}
+
+
+function install_services (){
+
+}
+
+
+
 while getopts ":vh" o; do
         case "${o}" in
         v)
@@ -31,4 +42,7 @@ while getopts ":vh" o; do
     esac
 done
 shift $((OPTIND-1))
+
+
+
 

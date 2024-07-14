@@ -1,5 +1,8 @@
 #!/bin/bash
 SCRIPT_NAME=$(basename $0)
+CWD=$(pwd)
+cd "$CWD"
+
 
 
 function usage(){
@@ -21,7 +24,12 @@ EOF
 }
 
 function clean_old_services(){
-
+        system_service_folder="/etc/systemd/system/"
+        for i in $(ls $CWD/services/*.{service,timer})
+        do
+                # remove from dest target because we will reinstall the new service
+                rm -vf "$system_service_folder$i" 
+        done
 }
 
 

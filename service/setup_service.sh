@@ -35,6 +35,7 @@ function clean_old_services(){
 
 function install_services (){
         mv "$CWD/services/*.{service,timer}"  /etc/systemd/system/
+        sudo systemctl daemon-reload
 }
 
 

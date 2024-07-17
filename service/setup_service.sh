@@ -3,6 +3,8 @@ SCRIPT_NAME=$(basename $0)
 CWD=$(pwd)
 cd "$CWD"
 
+VERBOSE=false
+
 
 
 function usage(){
@@ -29,6 +31,7 @@ function clean_old_services(){
         do
                 # remove from dest target because we will reinstall the new service
                 rm -vf "$system_service_folder$i" 
+
         done
 }
 
@@ -43,7 +46,7 @@ function install_services (){
 while getopts ":vh" o; do
         case "${o}" in
         v)
-                verbose=true
+                VERBOSE=true
                 ;;
         *)
             usage

@@ -25,6 +25,11 @@ EOF
 
 }
 
+function logger(){
+
+}
+
+
 function clean_old_services(){
         system_service_folder="/etc/systemd/system/"
         for i in $(ls $CWD/services/*.{service,timer})
@@ -54,6 +59,12 @@ while getopts ":vh" o; do
     esac
 done
 shift $((OPTIND-1))
+
+echo -e ''
+clean_old_services
+
+echo -e ''
+install_services
 
 
 

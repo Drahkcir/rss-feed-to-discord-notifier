@@ -60,10 +60,10 @@ while getopts ":vh" o; do
 done
 shift $((OPTIND-1))
 
-echo -e ''
+echo -e 'cleaning services that will be replaced by the new ones'
 clean_old_services
 
-echo -e ''
+echo -e 'copying the new units that will be ativated'
 install_services
 
 

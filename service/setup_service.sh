@@ -32,12 +32,14 @@ function logger(){
 
 function clean_old_services(){
         system_service_folder="/etc/systemd/system/"
+        rc=0 
         for i in $(ls $CWD/services/*.{service,timer})
         do
                 # remove from dest target because we will reinstall the new service
                 rm -vf "$system_service_folder$i" 
-
+                rc=$?
         done
+        return $rc
 }
 
 
@@ -62,6 +64,7 @@ shift $((OPTIND-1))
 
 echo -en 'cleaning services that will be replaced by the new ones'
 clean_old_services
+if [$? -eq 0 ]
 
 echo -en 'copying the new units that will be ativated'
 install_services
